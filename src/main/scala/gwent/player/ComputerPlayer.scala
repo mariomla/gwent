@@ -11,6 +11,7 @@ class ComputerPlayer(private val name: String, private val section: Int, private
       val index = cardHand.indexOf(card)
       cardHand = cardHand.patch(index, Nil, 1) // Elimina la carta del índice obtenido
       card.playCardComputerPlayer(board)
+      card.handleEffect(board, this.section)
     }
     else {
       println("El jugador DOS no posee la carta "+ card.toString + " en la mano.")

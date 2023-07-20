@@ -11,6 +11,7 @@ class HumanPlayer(private val name: String, private val section: Int, private va
       val index = cardHand.indexOf(card)
       cardHand = cardHand.patch(index, Nil, 1) // Elimina la carta del índice obtenido
       card.playCardHumanPlayer(board)
+      card.handleEffect(board, this.section)
     }
     else{
       println("El jugador UNO no posee la carta " + card.toString + " en la mano.")
