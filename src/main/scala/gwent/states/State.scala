@@ -1,7 +1,7 @@
 package gwent.states
 
 class State() {
-  private var gameController: GameController = null
+  protected var gameController: GameController = null
   def setGameController(aGameController: GameController): Unit = {
     this.gameController= aGameController
   }

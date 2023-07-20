@@ -1,10 +1,55 @@
 package gwent.states
 
+import gwent.{Board, ICard, UnitCard}
 import gwent.observer.{ISubject, Observer}
+import gwent.player.{ComputerPlayer, HumanPlayer}
 
 class GameController() extends Observer{
   private var state: State = new Player1Turn()
+  private var board: Board = new Board()
+  private var player1: HumanPlayer = null
+  private var player2: ComputerPlayer = null
   state.setGameController(this)
+
+  def createHumanPlayer(name: String, cardDeck: List[ICard]): Unit = {
+    player1 = HumanPlayer(name, cardDeck)
+  }
+
+  def createComputerPlayer(name: String, cardDeck: List[ICard]): Unit = {
+    player2 = ComputerPlayer(name, cardDeck)
+  }
+
+  def startGame(player1: HumanPlayer, player2: ComputerPlayer): Unit = {
+    var i: Int = 0
+    player1.shuffleDeck()
+    player2.shuffleDeck()
+    while (i < 10) {
+      player1.drawCard()
+      player2.drawCard()
+    }
+  }
+
+  def pointsCalculator(zone: List[ICard]): Int = {
+    zone.head match {
+      case z: UnitCard => {
+        val restoZone: List[ICard] = zone.tail
+        this.pointsCalculator(restoZone) + 1
+      }
+      case _ => 0
+    }
+  }
+  def endRound(): Unit = {
+    val pointsPlayerOne: Int = pointsCalculator(board.meleeZonePlayerOne) + pointsCalculator(board.rangedZonePlayerOne) + pointsCalculator(board.siegeZonePlayerOne)
+    val pointsPlayerTwo: Int = pointsCalculator(board.meleeZonePlayerTwo) + pointsCalculator(board.rangedZonePlayerTwo) + pointsCalculator(board.siegeZonePlayerTwo)
+    if (pointsPlayerOne > pointsPlayerTwo) {
+      player2.decrementGemstones()
+    } else if (pointsPlayerTwo > pointsPlayerOne) {
+      player1.decrementGemstones()
+    }else {
+      player1.decrementGemstones()
+      player2.decrementGemstones()
+    }
+  }
 
   def setState(aState: State): Unit = {
     state = aState

@@ -4,6 +4,8 @@ abstract class AbstractCard(private val name: String, private val effect: String
   override def getName: String = this.name
 
   override def getEffect: String = this.effect
+  
+  // Por ahora no hay forma en que el nombre o el efecto cambien por lo que no se haran dichos setters, no seran usados
 
   override def handleEffect(board: Board, section:Int): Unit = {
     this.getEffect match{
@@ -16,9 +18,4 @@ abstract class AbstractCard(private val name: String, private val effect: String
       case _ =>
     }
   }
-
-  //override def playCardComputerPlayer(board: Board): Unit
-
-  //override def playCardHumanPlayer(board: Board): Unit
-  // FAltan los setters
 }
