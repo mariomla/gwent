@@ -1,12 +1,13 @@
 package gwent.player
 
 
+import gwent.observer.Subject
 import gwent.{Board, ICard}
 
 import scala.::
 
 abstract class AbstractPlayer(private val name: String, private val section: Int, private var cardDeck: List[ICard],
-                              private var cardHand: List[ICard], private var gemstones: Int) {
+                              private var cardHand: List[ICard], private var gemstones: Int) extends Subject {
 
   def getName: String = this.name
 
@@ -26,11 +27,13 @@ abstract class AbstractPlayer(private val name: String, private val section: Int
     cardHand = cardHand :+ firstCard
     cardDeck = deckWOfirstCard
   }
-
+  
+  def lose(): Unit 
+  
   def decrementGemstones(): Unit = {
     if (gemstones <= 1) {
       gemstones = 0
-      print("Has perdido")
+      this.lose()
     }
     else {gemstones -= 1}
   }

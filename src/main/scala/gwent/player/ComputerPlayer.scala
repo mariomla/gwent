@@ -17,6 +17,10 @@ class ComputerPlayer(private val name: String, private val section: Int, private
     }
   }
 
+  def lose(): Unit = {
+    notifyObserver(this)
+  }
+
   def this(name: String, cardDeck: List[ICard]) = this(name, 2, cardDeck, Nil, 2)
 
   override def toString = s"ComputerPlayer($name, $section, $gemstones, $cardDeck, $cardHand)"

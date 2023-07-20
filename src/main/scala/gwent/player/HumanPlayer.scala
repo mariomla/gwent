@@ -19,6 +19,10 @@ class HumanPlayer(private val name: String, private val section: Int, private va
 
   def this(name: String, cardDeck: List[ICard]) = this(name, 1, cardDeck, Nil, 2)
 
+  def lose(): Unit = {
+    notifyObserver(this)
+  }
+
   override def toString = s"HumanPlayer($name, $section, $gemstones, $cardDeck, $cardHand)"
 
   private def canEqual(other: Any): Boolean = other.isInstanceOf[HumanPlayer]
