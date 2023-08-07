@@ -12,6 +12,7 @@ trait ICard {
   
   def setStrength(newStrength: Int): Unit
   
+  
   //setters
 
   def playCardHumanPlayer(board: Board): Unit

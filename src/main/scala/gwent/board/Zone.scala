@@ -2,14 +2,19 @@ package gwent.board
 
 import gwent.board.Component
 import gwent.cards.ICard
+import gwent.effect.IEffect
 
-class Zone(private[gwent] var cards: Array[ICard]) { // extends COmponent??
+class Zone(private[gwent] var cards: Array[ICard]) extends Component {
 
   def this() = this(new Array[ICard](0)) // 
   
-  def setZone(aCards: Array[ICard]) = {this.cards = aCards}
+  def setZone(aCards: Array[ICard]): Unit = {this.cards = aCards}
 
-
+  def applyEffect(board: Board, section: Int, effect: IEffect): Unit = {
+    for (card <- this.cards) {
+      card.applyEffect(board, section, effect)
+    }
+  }
   private def canEqual(other: Any): Boolean = other.isInstanceOf[Zone]
 
   private def eqArray(aZone: Zone): Boolean = {

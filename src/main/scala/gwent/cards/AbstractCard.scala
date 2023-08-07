@@ -1,9 +1,10 @@
 package gwent.cards
 
+import gwent.board.Board
 import gwent.cards.ICard
 import gwent.effect.IEffect
 
-abstract class AbstractCard(private val name: String, private val effect: IEffect) extends ICard{
+abstract class AbstractCard(private val name: String, private var effect: IEffect) extends ICard{
   override def getName: String = this.name
 
   override def getEffect: IEffect = this.effect

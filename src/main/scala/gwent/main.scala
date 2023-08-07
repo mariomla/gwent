@@ -2,8 +2,11 @@ package gwent
 
 @main
 def main(): Unit = {
-  val a1: Array[Int] = Array(1, 2)
-  val a2: Array[Int] = Array(1, 2)
-  if(a1 != a2){println("si")}
-  println(a1(a1.length - 1))
+  var a1: Array[Int] = new Array[Int](0)
+  var a2: Int = 3
+  a1 = a1 :+ a2
+  a1 = a1 :+ 2
+  a1 = a1 :+ 1
+  println(a2 += 1)
+
 }

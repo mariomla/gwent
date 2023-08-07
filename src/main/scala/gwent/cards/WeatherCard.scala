@@ -16,20 +16,20 @@ class WeatherCard(private val name: String, private val effect: IEffect) extends
 
 
   override def playCardHumanPlayer(board: Board): Unit = {
-    if (board.getWeatherZone.cards == null) {
+    if (board.getWeatherZone.cards.length == 0) {
       board.setWeatherZone(this)
     }
     else {
-      println("El jugador UNO intento jugar una carta de clima, sin embargo, la zona de clima esta ocupada por la carta: " + board.getWeatherZone.cards.toString())
+      println("El jugador UNO intento jugar una carta de clima, sin embargo, la zona de clima esta ocupada por la carta: " + board.getWeatherZone.cards(0).getName)
     }
   }
 
   override def playCardComputerPlayer(board: Board): Unit = {
-    if (board.getWeatherZone.cards == null) {
+    if (board.getWeatherZone.cards.length == 0) {
       board.setWeatherZone(this)
     }
     else {
-      println("El jugador DOS intento jugar una carta de clima, sin embargo, la zona de clima esta ocupada por la carta: " + board.getWeatherZone.cards.toString())
+      println("El jugador DOS intento jugar una carta de clima, sin embargo, la zona de clima esta ocupada por la carta: " + board.getWeatherZone.cards(0).getName)
     }
   }
 

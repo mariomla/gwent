@@ -3,7 +3,7 @@ package gwent.effect
 import gwent.board.{Zone, Board}
 import gwent.cards.ICard
 
-class RefuerzoMoral(cardName: String, cardsEffectApplied: Int) extends IEffect {
+class RefuerzoMoral(cardName: String, var cardsEffectApplied: Int) extends IEffect {
   // Se supondra que no existen dos cartas de distinto tipo con el mismo nombre
   def this(cardName: String) = this(cardName, 0)
 
@@ -25,6 +25,7 @@ class RefuerzoMoral(cardName: String, cardsEffectApplied: Int) extends IEffect {
     if (this.isCardNameInZone(zone) && !(this.isTheLastCard(card, zone))) { // si esta la cardName en la zona entonces es la zona donde hay q aplicar el efecto, y si es la ultimo rntonces no hya que aplicar el efectp
       card.setStrength(card.getStrength + 1)
     }
+    this.cardsEffectApplied = this.cardsEffectApplied + 1
   }
 
   override def applyEffectMelee(section: Int, card: ICard, board: Board): Unit = {

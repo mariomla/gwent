@@ -4,6 +4,7 @@ package gwent.player
 //import gwent.observer.Subject
 import gwent.board.Board
 import gwent.cards.ICard
+import gwent.effect.IEffect
 
 import scala.::
 
@@ -41,6 +42,16 @@ abstract class AbstractPlayer(private val name: String, private val section: Int
 
   def shuffleDeck(): Unit = {
     cardDeck = scala.util.Random.shuffle(cardDeck)
+  }
+
+  def applyEffectToBoard(board: Board, section: Int, effect: IEffect): Unit = {
+    board.meleeZonePlayerOne.applyEffect(board: Board, section: Int, effect: IEffect)
+    board.meleeZonePlayerTwo.applyEffect(board: Board, section: Int, effect: IEffect)
+    board.rangedZonePlayerOne.applyEffect(board: Board, section: Int, effect: IEffect)
+    board.rangedZonePlayerTwo.applyEffect(board: Board, section: Int, effect: IEffect)
+    board.siegeZonePlayerOne.applyEffect(board: Board, section: Int, effect: IEffect)
+    board.meleeZonePlayerTwo.applyEffect(board: Board, section: Int, effect: IEffect)
+    board.weatherZone.applyEffect(board: Board, section: Int, effect: IEffect)
   }
 }
 
