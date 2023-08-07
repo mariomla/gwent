@@ -17,6 +17,10 @@ class RangedUnit(private val name: String, private val effect: IEffect, private 
   override def playCardComputerPlayer(board: Board): Unit = {
     board.rangedZonePlayerTwo.cards = board.rangedZonePlayerTwo.cards :+ this
   }
+
+  override def applyEffect(board: Board, section: Int, effect: IEffect): Unit = {
+    effect.applyEffectRanged(section, this, board)
+  }
  
   override def toString = s"RangedUnit($name, $effect, $strength)"
 

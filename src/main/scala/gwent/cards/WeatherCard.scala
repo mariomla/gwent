@@ -9,6 +9,11 @@ class WeatherCard(private val name: String, private val effect: IEffect) extends
   //playcard OJO, ARREGLAR??
   override def setStrength(newStrength: Int): Unit = {println("WeatherCard no tiene atributo Strngth")}
 
+  override def getStrength: Int = {
+    println("WeatherCard no tiene atributo Strngth")
+    0
+  }
+
 
   override def playCardHumanPlayer(board: Board): Unit = {
     if (board.getWeatherZone.cards == null) {
@@ -26,6 +31,10 @@ class WeatherCard(private val name: String, private val effect: IEffect) extends
     else {
       println("El jugador DOS intento jugar una carta de clima, sin embargo, la zona de clima esta ocupada por la carta: " + board.getWeatherZone.cards.toString())
     }
+  }
+
+  override def applyEffect(board: Board, section: Int, effect: IEffect): Unit = {
+    effect.applyEffectWeather(section, this, board)
   }
 
 

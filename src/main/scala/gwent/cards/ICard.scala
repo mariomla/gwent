@@ -8,6 +8,8 @@ trait ICard {
 
   def getEffect: IEffect
   
+  def getStrength: Int
+  
   def setStrength(newStrength: Int): Unit
   
   //setters
@@ -16,5 +18,5 @@ trait ICard {
   
   def playCardComputerPlayer(board: Board): Unit
   
- // def handleEffect(board: Board, section: Int): Unit
+  def applyEffect(board: Board, section: Int, effect: IEffect): Unit
 }

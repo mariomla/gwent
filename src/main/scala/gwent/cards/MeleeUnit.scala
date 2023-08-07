@@ -18,6 +18,10 @@ class MeleeUnit(private val name: String, private val effect: IEffect, private v
     board.meleeZonePlayerTwo.cards = board.meleeZonePlayerTwo.cards :+ this
   }
 
+  override def applyEffect(board: Board, section: Int, effect: IEffect): Unit = {
+    effect.applyEffectMelee(section, this, board)
+  }
+
   override def toString = s"MeleeUnit($name, $effect, $strength)"
 
   private def canEqual(other: Any): Boolean = other.isInstanceOf[MeleeUnit]

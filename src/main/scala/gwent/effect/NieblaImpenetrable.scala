@@ -3,21 +3,15 @@ import gwent.board.{Board, Zone}
 import gwent.cards.ICard
 
 class NieblaImpenetrable extends IEffect {
+  override def applyEffectMelee(section: Int, card: ICard, board: Board): Unit = {}
 
-  override def applyToBoard(aBoard: Board): Unit = {
-    this.applyToZone(aBoard.rangedZonePlayerOne)
-    this.applyToZone(aBoard.rangedZonePlayerTwo)
+  override def applyEffectRanged(section: Int, card: ICard, board: Board): Unit = {
+    card.setStrength(1)
   }
 
-  override def applyToZone(aZone: Zone): Unit = {
-    for (card <- aZone.cards) {
-      this.applyToCard(card)
-    }
-  }
+  override def applyEffectSiege(section: Int, card: ICard, board: Board): Unit = {}
 
-  override def applyToCard(aCard: ICard): Unit = {
-    aCard.setStrength(1)
-  }
+  override def applyEffectWeather(section: Int, card: ICard, board: Board): Unit = {}
 
   override def equals(other: Any): Boolean = other match {
     case that: NieblaImpenetrable => true

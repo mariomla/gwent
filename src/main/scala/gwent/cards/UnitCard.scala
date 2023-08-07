@@ -11,6 +11,7 @@ abstract class UnitCard(private val name: String, private val effect: IEffect, p
   def setStrength(newStrength: Int): Unit = {
     this.strength = newStrength
   }
+  
 
   //override def playCardComputerPlayer(board: Board): Unit
 

@@ -6,7 +6,8 @@ import gwent.cards.ICard
 // Efecto Vacio
 
 trait IEffect {
-  def applyToBoard(aBoard: Board): Unit
-  def applyToZone(aZone: Zone): Unit
-  def applyToCard(aCard: ICard): Unit
+  def applyEffectMelee(section: Int, card: ICard, board: Board): Unit
+  def applyEffectRanged(section: Int, card: ICard, board: Board): Unit
+  def applyEffectSiege(section: Int, card: ICard, board: Board): Unit
+  def applyEffectWeather(section: Int, card: ICard, board: Board): Unit
 }

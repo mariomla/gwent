@@ -18,6 +18,10 @@ class SiegeUnit(private val name: String, private val effect: IEffect, private v
     board.siegeZonePlayerTwo.cards = board.siegeZonePlayerTwo.cards :+ this
   }
 
+  override def applyEffect(board: Board, section: Int, effect: IEffect): Unit = {
+    effect.applyEffectSiege(section, this, board)
+  }
+
   override def toString = s"SiegeUnit($name, $effect, $strength)"
 
   private def canEqual(other: Any): Boolean = other.isInstanceOf[SiegeUnit]

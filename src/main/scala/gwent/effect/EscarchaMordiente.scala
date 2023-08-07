@@ -4,18 +4,15 @@ import gwent.cards.ICard
 
 class EscarchaMordiente extends IEffect {
 
-  override def applyToBoard(aBoard: Board): Unit = {
-    this.applyToZone(aBoard.meleeZonePlayerOne)
-    this.applyToZone(aBoard.meleeZonePlayerTwo)
+  override def applyEffectMelee(section: Int, card: ICard, board: Board): Unit = {
+    card.setStrength(1)
   }
 
-  override def applyToZone(aZone: Zone): Unit = {
-    for(card <- aZone.cards) {this.applyToCard(card)}
-  }
+  override def applyEffectRanged(section: Int, card: ICard, board: Board): Unit = {}
 
-  override def applyToCard(aCard: ICard): Unit = {
-    aCard.setStrength(1)
-  }
+  override def applyEffectSiege(section: Int, card: ICard, board: Board): Unit = {}
+
+  override def applyEffectWeather(section: Int, card: ICard, board: Board): Unit = {}
 
   override def equals(other: Any): Boolean = other match {
     case that: EscarchaMordiente => true

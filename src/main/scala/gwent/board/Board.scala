@@ -30,9 +30,7 @@ class Board(private[gwent] var meleeZonePlayerOne: Zone, private[gwent] var rang
     this.weatherZone.cards = Array(card)
   }
   
-  def applyEffect(effect: IEffect): Unit = {
-    effect.applyToBoard(this)
-  }
+  //def applyEffect(effect: IEffect): Unit = {}
 
   //removeWeatherCard
   
