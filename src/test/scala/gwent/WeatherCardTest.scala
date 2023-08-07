@@ -1,5 +1,7 @@
 package gwent
 
+import gwent.cards.WeatherCard
+import gwent.effect.{EscarchaMordiente, NieblaImpenetrable, NoEffect}
 import munit.FunSuite
 
 class WeatherCardTest extends FunSuite {
@@ -10,21 +12,16 @@ class WeatherCardTest extends FunSuite {
   var card5: WeatherCard = null
 
   override def beforeEach(context: BeforeEach): Unit = {
-    card1 = new WeatherCard("Escarcha mordiente",
-      "Establece el valor de fuerza de todas las cartas de combate cuerpo a cuerpo en 1")
-    card2 = new WeatherCard("Escarcha mordiente",
-      "Establece el valor de fuerza de todas las cartas de combate cuerpo a cuerpo en 1")
-    card3 = new WeatherCard("Escarcha blanca",
-      "Establece el valor de fuerza de todas las cartas de combate cuerpo a cuerpo en 1")
-    card4 = new WeatherCard("Escarcha mordiente", "Ninguno")
-    card5 = new WeatherCard("Niebla impenetrable",
-      ": Establece el valor de fuerza de todas las cartas de combate a distancia a 1.")
+    card1 = new WeatherCard("Escarcha mordiente", new EscarchaMordiente)
+    card2 = new WeatherCard("Escarcha mordiente", new EscarchaMordiente)
+    card3 = new WeatherCard("Escarcha blanca", new EscarchaMordiente)
+    card4 = new WeatherCard("Escarcha mordiente", new NoEffect)
+    card5 = new WeatherCard("Niebla impenetrable", new NieblaImpenetrable)
   }
 
   test("Una carta debe tener un nombre y un efecto. Ademas prueba los getters") {
     assertEquals(card1.getName, "Escarcha mordiente")
-    assertEquals(card1.getEffect,
-      "Establece el valor de fuerza de todas las cartas de combate cuerpo a cuerpo en 1")
+    assertEquals(card1.getEffect, new EscarchaMordiente)
   }
 
   test("Dos cartas son iguales cuando el nombre y el efecto son el mismo") {

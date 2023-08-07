@@ -1,5 +1,6 @@
 package gwent.player
-import gwent.{Board, ICard}
+import gwent.board.Board
+import gwent.cards.ICard
 
 class ComputerPlayer(private val name: String, private val section: Int, private var cardDeck: List[ICard],
                     private var cardHand: List[ICard], private var gemstones: Int) extends
@@ -11,7 +12,7 @@ class ComputerPlayer(private val name: String, private val section: Int, private
       val index = cardHand.indexOf(card)
       cardHand = cardHand.patch(index, Nil, 1) // Elimina la carta del índice obtenido
       card.playCardComputerPlayer(board)
-      card.handleEffect(board, this.section)
+      //card.handleEffect(board, this.section)
     }
     else {
       println("El jugador DOS no posee la carta "+ card.toString + " en la mano.")
@@ -19,7 +20,7 @@ class ComputerPlayer(private val name: String, private val section: Int, private
   }
 
   def lose(): Unit = {
-    notifyObserver(this)
+    //notifyObserver(this)
   }
 
   def this(name: String, cardDeck: List[ICard]) = this(name, 2, cardDeck, Nil, 2)

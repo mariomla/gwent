@@ -1,16 +1,21 @@
-package gwent
+package gwent.cards
 
-class SiegeUnit(private val name: String, private val effect: String, private val strength: Int)
+import gwent.cards.UnitCard
+import gwent.board.{Board, Zone}
+import gwent.effect.IEffect
+import gwent.effect.NoEffect
+
+class SiegeUnit(private val name: String, private val effect: IEffect, private val strength: Int)
                 extends UnitCard(name, effect, strength) {
 
-  def this(name: String, strength: Int) = this(name, "Ninguno", strength)
+  def this(name: String, strength: Int) = this(name, new NoEffect, strength)
 
   override def playCardHumanPlayer(board: Board): Unit = {
-    board.siegeZonePlayerOne = board.siegeZonePlayerOne :+ this
+    board.siegeZonePlayerOne.cards = board.siegeZonePlayerOne.cards :+ this
   }
 
   override def playCardComputerPlayer(board: Board): Unit = {
-    board.siegeZonePlayerTwo = board.siegeZonePlayerTwo :+ this
+    board.siegeZonePlayerTwo.cards = board.siegeZonePlayerTwo.cards :+ this
   }
 
   override def toString = s"SiegeUnit($name, $effect, $strength)"

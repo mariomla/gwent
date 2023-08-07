@@ -1,33 +1,37 @@
-package gwent
+package gwent.board
 
+import gwent.cards.ICard
 import jdk.internal.jmod.JmodFile.Section
 
 // Solo puede haber un Board
 
-class Board(private[gwent] var meleeZonePlayerOne: List[ICard], private[gwent] var rangedZonePlayerOne: List[ICard],
-            private[gwent] var siegeZonePlayerOne: List[ICard], private[gwent] var meleeZonePlayerTwo: List[ICard],
-            private[gwent] var rangedZonePlayerTwo: List[ICard], private[gwent] var siegeZonePlayerTwo: List[ICard],
-            private[gwent] var weatherZone: ICard){
-  def this() = this(Nil, Nil, Nil, Nil, Nil, Nil, null) // Se crea un tablero totalmente vacio
+class Board(private[gwent] var meleeZonePlayerOne: Zone, private[gwent] var rangedZonePlayerOne: Zone,
+            private[gwent] var siegeZonePlayerOne: Zone, private[gwent] var meleeZonePlayerTwo: Zone,
+            private[gwent] var rangedZonePlayerTwo: Zone, private[gwent] var siegeZonePlayerTwo: Zone,
+            private[gwent] var weatherZone: Zone){
+  def this() = this(new Zone(), new Zone(), new Zone(), new Zone(), new Zone(), new Zone(), new Zone())
 
-  def getMeleeZonePlayerOne: List[ICard] = this.meleeZonePlayerOne
+  def getMeleeZonePlayerOne: Zone = this.meleeZonePlayerOne
 
-  def getRangedZonePlayerOne: List[ICard] = this.rangedZonePlayerOne
+  def getRangedZonePlayerOne: Zone = this.rangedZonePlayerOne
 
-  def getSiegeZonePlayerOne: List[ICard] = this.siegeZonePlayerOne
+  def getSiegeZonePlayerOne: Zone = this.siegeZonePlayerOne
 
-  def getMeleeZonePlayerTwo: List[ICard] = this.meleeZonePlayerTwo
+  def getMeleeZonePlayerTwo: Zone = this.meleeZonePlayerTwo
 
-  def getRangedZonePlayerTwo: List[ICard] = this.rangedZonePlayerTwo
+  def getRangedZonePlayerTwo: Zone = this.rangedZonePlayerTwo
 
-  def getSiegeZonePlayerTwo: List[ICard] = this.siegeZonePlayerTwo
+  def getSiegeZonePlayerTwo: Zone = this.siegeZonePlayerTwo
 
-  def getWeatherZone: ICard = this.weatherZone
+  def getWeatherZone: Zone = this.weatherZone
 
   def setWeatherZone(card: ICard): Unit = {
-    this.weatherZone = card
+    this.weatherZone.cards = Array(card)
   }
 
+  //removeWeatherCard
+  
+  /*
   def setStrengthZone(zone: List[ICard], strength: Int): Unit = {
     zone.head match {
       case z: UnitCard => {
@@ -37,6 +41,7 @@ class Board(private[gwent] var meleeZonePlayerOne: List[ICard], private[gwent] v
 
       case _ =>
     }
+  
   }
 
 
@@ -70,6 +75,7 @@ class Board(private[gwent] var meleeZonePlayerOne: List[ICard], private[gwent] v
   }
 
   def climaDespejado(): Unit = {setWeatherZone(null)}
+  */
 
   //setters?
 }

@@ -1,5 +1,7 @@
 package gwent
 
+import gwent.cards.MeleeUnit
+import gwent.effect.{EscarchaMordiente, NoEffect, NieblaImpenetrable}
 import munit.FunSuite
 
 class MeleeUnitTest extends FunSuite {
@@ -11,19 +13,19 @@ class MeleeUnitTest extends FunSuite {
   var card6: MeleeUnit = null
 
   override def beforeEach(context: BeforeEach): Unit = {
-    card1 = MeleeUnit("Piquero", "Vinculo Estrecho", 2)
-    card2 = MeleeUnit("Piquero", "Vinculo Estrecho", 2)
+    card1 = MeleeUnit("Piquero", new EscarchaMordiente, 2)
+    card2 = MeleeUnit("Piquero", new EscarchaMordiente, 2)
     card3 = MeleeUnit("Piquero", 2)
-    card4 = MeleeUnit("Piquero", "Vinculo Estrecho", 3)
-    card5 = MeleeUnit("Piquero", "Refuerzo Moral", 2)
-    card6 = MeleeUnit("Soldado", "Vinculo Estrecho", 2)
+    card4 = MeleeUnit("Piquero", new EscarchaMordiente, 3)
+    card5 = MeleeUnit("Piquero", new NieblaImpenetrable, 2)
+    card6 = MeleeUnit("Soldado", new EscarchaMordiente, 2)
   }
 
   test("Una MeleeUnit debe tener nombre y fuerza, puedo o no tener efecto. Ademas pruebas los getters"){
     assertEquals(card1.getName, "Piquero")
     assertEquals(card1.getStrength, 2)
-    assertEquals(card1.getEffect, "Vinculo Estrecho")
-    assertEquals(card3.getEffect, "Ninguno")
+    assertEquals(card1.getEffect, new EscarchaMordiente)
+    assertEquals(card3.getEffect, new NoEffect)
   }
 
   test("Dos cartas son iguales si tienen el mismo nombre, efecto y fuerza") {

@@ -1,6 +1,9 @@
-package gwent
+package gwent.cards
 
-abstract class UnitCard(private val name: String, private val effect: String, private var strength: Int)
+import gwent.cards.AbstractCard
+import gwent.effect.IEffect
+
+abstract class UnitCard(private val name: String, private val effect: IEffect, private var strength: Int)
   extends AbstractCard(name, effect) {
   
   def getStrength: Int = this.strength

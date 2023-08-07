@@ -1,5 +1,6 @@
 package gwent.player
-import gwent.{Board, ICard}
+import gwent.board.Board
+import gwent.cards.ICard
 
 class HumanPlayer(private val name: String, private val section: Int, private var cardDeck: List[ICard],
                   private var cardHand: List[ICard], private var gemstones: Int) extends
@@ -11,7 +12,7 @@ class HumanPlayer(private val name: String, private val section: Int, private va
       val index = cardHand.indexOf(card)
       cardHand = cardHand.patch(index, Nil, 1) // Elimina la carta del índice obtenido
       card.playCardHumanPlayer(board)
-      card.handleEffect(board, this.section)
+      //card.handleEffect(board, this.section)
     }
     else{
       println("El jugador UNO no posee la carta " + card.toString + " en la mano.")
@@ -21,7 +22,7 @@ class HumanPlayer(private val name: String, private val section: Int, private va
   def this(name: String, cardDeck: List[ICard]) = this(name, 1, cardDeck, Nil, 2)
 
   def lose(): Unit = {
-    notifyObserver(this)
+    //notifyObserver(this)
   }
 
   override def toString = s"HumanPlayer($name, $section, $gemstones, $cardDeck, $cardHand)"

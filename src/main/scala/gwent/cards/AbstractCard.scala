@@ -1,12 +1,17 @@
-package gwent
+package gwent.cards
 
-abstract class AbstractCard(private val name: String, private val effect: String) extends ICard{
+import gwent.cards.ICard
+import gwent.effect.IEffect
+
+abstract class AbstractCard(private val name: String, private val effect: IEffect) extends ICard{
   override def getName: String = this.name
 
-  override def getEffect: String = this.effect
+  override def getEffect: IEffect = this.effect
+  
   
   // Por ahora no hay forma en que el nombre o el efecto cambien por lo que no se haran dichos setters, no seran usados
-
+  
+  /*
   override def handleEffect(board: Board, section:Int): Unit = {
     this.getEffect match{
       case "Refuerzo Moral" => board.refuerzoMoral()
@@ -18,4 +23,5 @@ abstract class AbstractCard(private val name: String, private val effect: String
       case _ =>
     }
   }
+  */
 }

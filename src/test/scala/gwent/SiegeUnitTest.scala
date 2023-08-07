@@ -1,5 +1,7 @@
 package gwent
 
+import gwent.cards.SiegeUnit
+import gwent.effect.{EscarchaMordiente, NoEffect, NieblaImpenetrable}
 import munit.FunSuite
 
 class SiegeUnitTest extends FunSuite {
@@ -11,19 +13,19 @@ class SiegeUnitTest extends FunSuite {
   var card6: SiegeUnit = null
 
   override def beforeEach(context: BeforeEach): Unit = {
-    card1 = SiegeUnit("Escorpion", "Vinculo Estrecho", 2)
-    card2 = SiegeUnit("Escorpion", "Vinculo Estrecho", 2)
+    card1 = SiegeUnit("Escorpion", new EscarchaMordiente, 2)
+    card2 = SiegeUnit("Escorpion", new EscarchaMordiente, 2)
     card3 = SiegeUnit("Escorpion", 2)
-    card4 = SiegeUnit("Escorpion", "Vinculo Estrecho", 3)
-    card5 = SiegeUnit("Escorpion", "Refuerzo Moral", 2)
-    card6 = SiegeUnit("Ariete", "Vinculo Estrecho", 2)
+    card4 = SiegeUnit("Escorpion", new EscarchaMordiente, 3)
+    card5 = SiegeUnit("Escorpion", new NieblaImpenetrable, 2)
+    card6 = SiegeUnit("Ariete", new EscarchaMordiente,2)
   }
 
   test("Una SiegeUnit debe tener nombre y fuerza, puedo o no tener efecto. Ademas pruebas los getters"){
     assertEquals(card1.getName, "Escorpion")
     assertEquals(card1.getStrength, 2)
-    assertEquals(card1.getEffect, "Vinculo Estrecho")
-    assertEquals(card3.getEffect, "Ninguno")
+    assertEquals(card1.getEffect, new EscarchaMordiente)
+    assertEquals(card3.getEffect, new NoEffect)
   }
 
   test("Dos cartas son iguales si tienen el mismo nombre, efecto y fuerza") {

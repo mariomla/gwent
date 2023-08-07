@@ -1,5 +1,7 @@
 package gwent
 
+import gwent.cards.{ICard, MeleeUnit, RangedUnit, SiegeUnit, WeatherCard}
+import gwent.effect.{EscarchaMordiente, NieblaImpenetrable}
 import munit.FunSuite
 import gwent.player.HumanPlayer
 
@@ -23,11 +25,10 @@ class HumanPlayerTest extends FunSuite {
   override def beforeEach(context: BeforeEach): Unit = {
     name1 = "Genghis Khan"
     name2 = "Saladino"
-    card1 = new MeleeUnit("Piquero", "Vinculo Estrecho", 2)
+    card1 = new MeleeUnit("Piquero", new NieblaImpenetrable, 2)
     card2 = new SiegeUnit("Catapulta", 2)
     card3 = new RangedUnit("Arquero", 3)
-    card4 = new WeatherCard("Escarcha mordiente",
-                     "Establece el valor de fuerza de todas las cartas de combate cuerpo a cuerpo en 1.")
+    card4 = new WeatherCard("Escarcha mordiente", new EscarchaMordiente)
 
     cardDeck1 = List(card1, card1, card1, card3)
     cardDeck2 = List(card1, card3, card2, card4)

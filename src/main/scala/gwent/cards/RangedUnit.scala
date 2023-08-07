@@ -1,18 +1,23 @@
-package gwent
+package gwent.cards
 
-class RangedUnit(private val name: String, private val effect: String, private val strength: Int)
+import gwent.cards.UnitCard
+import gwent.board.{Board, Zone}
+import gwent.effect.IEffect
+import gwent.effect.NoEffect
+
+class RangedUnit(private val name: String, private val effect: IEffect, private val strength: Int)
                  extends UnitCard(name, effect, strength) {
 
-  def this(name: String, strength: Int) = this(name, "Ninguno", strength)
-
+  def this(name: String, strength: Int) = this(name, new NoEffect, strength)
+  
   override def playCardHumanPlayer(board: Board): Unit = {
-    board.rangedZonePlayerOne = board.rangedZonePlayerOne :+ this
+    board.rangedZonePlayerOne.cards = board.rangedZonePlayerOne.cards :+ this
   }
 
   override def playCardComputerPlayer(board: Board): Unit = {
-    board.rangedZonePlayerTwo = board.rangedZonePlayerTwo :+ this
+    board.rangedZonePlayerTwo.cards = board.rangedZonePlayerTwo.cards :+ this
   }
-
+ 
   override def toString = s"RangedUnit($name, $effect, $strength)"
 
   private def canEqual(other: Any): Boolean = other.isInstanceOf[RangedUnit]

@@ -2,8 +2,7 @@ package gwent
 
 @main
 def main(): Unit = {
-  println("Hello world!")
-  val card1: WeatherCard = new WeatherCard("Neblina", "ninguno")
-  println(card1)
-  println(card1.getName)
+  val a1: Array[Int] = Array(1, 2)
+  val a2: Array[Int] = Array(1, 2)
+  if(a1 == a2){print("si")}
 }

@@ -1,16 +1,21 @@
-package gwent
+package gwent.cards
 
-class MeleeUnit(private val name: String, private val effect: String, private val strength: Int)
+import gwent.cards.UnitCard
+import gwent.board.{Board, Zone}
+import gwent.effect.IEffect
+import gwent.effect.NoEffect
+
+class MeleeUnit(private val name: String, private val effect: IEffect, private val strength: Int)
                 extends UnitCard(name, effect, strength){
 
-  def this(name: String, strength: Int) = this(name, "Ninguno", strength)
-  
+  def this(name: String, strength: Int) = this(name, new NoEffect, strength)
+
   override def playCardHumanPlayer(board: Board): Unit = {
-    board.meleeZonePlayerOne = board.meleeZonePlayerOne :+ this
+    board.meleeZonePlayerOne.cards = board.meleeZonePlayerOne.cards :+ this
   }
 
   override def playCardComputerPlayer(board: Board): Unit = {
-    board.meleeZonePlayerTwo = board.meleeZonePlayerTwo :+ this
+    board.meleeZonePlayerTwo.cards = board.meleeZonePlayerTwo.cards :+ this
   }
 
   override def toString = s"MeleeUnit($name, $effect, $strength)"
