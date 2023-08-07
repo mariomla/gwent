@@ -29,7 +29,7 @@ abstract class AbstractPlayer(private val name: String, private val section: Int
     cardDeck = deckWOfirstCard
   }
   
-  def lose(): Unit 
+  def lose(): Unit //
   
   def decrementGemstones(): Unit = {
     if (gemstones <= 1) {

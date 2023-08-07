@@ -1,6 +1,7 @@
 package gwent.board
 
 import gwent.cards.ICard
+import gwent.effect.IEffect
 import jdk.internal.jmod.JmodFile.Section
 
 // Solo puede haber un Board
@@ -27,6 +28,10 @@ class Board(private[gwent] var meleeZonePlayerOne: Zone, private[gwent] var rang
 
   def setWeatherZone(card: ICard): Unit = {
     this.weatherZone.cards = Array(card)
+  }
+  
+  def applyEffect(effect: IEffect): Unit = {
+    effect.applyToBoard(this)
   }
 
   //removeWeatherCard
