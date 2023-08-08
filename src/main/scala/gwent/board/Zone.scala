@@ -11,7 +11,9 @@ import gwent.effect.IEffect
  * @param cards Arreglo de las cartas jugadas en dicha zona
  *
  * @constructor Crea una Zona con las cartas especificadas.
- * @constructor Crea una zona vacia, sin cartas jugadas.             
+ * @constructor Crea una zona vacia, sin cartas jugadas. 
+ *              
+ * Extiende de Component             
  */
 
 class Zone(private[gwent] var cards: Array[ICard]) extends Component {
@@ -20,6 +22,14 @@ class Zone(private[gwent] var cards: Array[ICard]) extends Component {
   
   def setZone(aCards: Array[ICard]): Unit = {this.cards = aCards}
 
+  /** Metodo para aplicar un efecto sobre esta zona.
+   * 
+   * Aplica el efecto a cada carta de la zona.
+   * 
+   * @param board tablero donde se aplica el efecto
+   * @param section seccion del jugador que aplica el efecto
+   * @param effect efecto que se aplica
+   */
   def applyEffect(board: Board, section: Int, effect: IEffect): Unit = {
     for (card <- this.cards) {
       card.applyEffect(board, section, effect)

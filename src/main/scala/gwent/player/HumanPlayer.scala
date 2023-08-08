@@ -13,6 +13,8 @@ import gwent.cards.ICard
  * @param gemstones Las gemas que tiene
  *
  * @constructor Crea un jugador humano con un name, section, cardDeck, cardHand y gemstones especificadas
+ * @constructor Crea un jugador humano con un nombre y un cardDeck especificados. Establece por defecto
+ *              la section como 2, la mano de cartas como vacia y en numero de gemas a 2.
  *              
  * Extiende de AbtractPlayer             
  */
@@ -21,6 +23,11 @@ class HumanPlayer(private val name: String, private val section: Int, private va
                   private var cardHand: List[ICard], private var gemstones: Int) extends
                   AbstractPlayer(name, section, cardDeck, cardHand, gemstones){
 
+  /** Metodo para jugar la carta card en el tablero board
+   *
+   * @param card  carta que se jugara
+   * @param board tablero en el que se jugara la carta
+   */
   def playCard(card: ICard, board: Board): Unit = {
     if (this.getCardHand.contains(card)) {
       card.playCardHumanPlayer(board)
@@ -34,6 +41,8 @@ class HumanPlayer(private val name: String, private val section: Int, private va
 
   def this(name: String, cardDeck: List[ICard]) = this(name, 1, cardDeck, Nil, 2)
 
+  /** Metodo que notifica al Observador del jugador cuando este pierde.
+   */
   def lose(): Unit = {
     notifyObserver(this)
   }

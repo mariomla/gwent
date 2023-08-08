@@ -16,6 +16,11 @@ import gwent.player.AbstractPlayer
 
 class VinculoEstrecho(val cardName: String) extends IEffect {
 
+  /** Metodo que devuelve el numero de veces que esta cardName del efecto se repite en la zona
+   * 
+   * @param zone zona donde se buscara
+   * @return Devuelve el numero de veces que se repite el nombre de cardName en los nombres de la cartas de la zona.
+   */
   def timesThisCardInZone(zone: Zone): Int = {
     var ret: Int = 0
     for (card <- zone.cards){
@@ -25,8 +30,12 @@ class VinculoEstrecho(val cardName: String) extends IEffect {
     }
     ret
   }
-   
 
+  /** Metodo intermedio que se encarga de reconocer si una carta debe recibir el efecto y lo aplica si es el caso.
+   * 
+   * @param zone zona donde esta la carta
+   * @param card carta a la cual se reconocera si se le debe aplicar el efecto o no
+   */
   def vinculoEstrechoEffect(zone: Zone, card: ICard): Unit = {
     val cond: Boolean = timesThisCardInZone(zone) > 1 // Si es mayor que 1, entonces esta carta esta mas de una vez en la fila
     if (cardName == card.getName && cond) {
@@ -34,6 +43,12 @@ class VinculoEstrecho(val cardName: String) extends IEffect {
     }
   }
 
+  /** Metodo que define la accion que tendra el efecto sobre una carta de combate cuerpo a cuerpo
+   *
+   * @param section seccion del jugador que aplica el efecto
+   * @param card    carta a la cual se le aplicara el efecto
+   * @param board   tablero donde se aplica el efecto
+   */
   override def applyEffectMelee(section: Int, card: ICard, board: Board): Unit = {
     var zone: Zone = Zone()
     if (section == 1){zone = board.meleeZonePlayerOne}
@@ -41,6 +56,12 @@ class VinculoEstrecho(val cardName: String) extends IEffect {
     vinculoEstrechoEffect(zone, card)
   }
 
+  /** Metodo que define la accion que tendra el efecto sobre una carta de combate a distancia
+   *
+   * @param section seccion del jugador que aplica el efecto
+   * @param card    carta a la cual se le aplicara el efecto
+   * @param board   tablero donde se aplica el efecto
+   */
   override def applyEffectRanged(section: Int, card: ICard, board: Board): Unit = {
     var zone: Zone = Zone()
     if (section == 1) {zone = board.rangedZonePlayerOne}
@@ -48,6 +69,12 @@ class VinculoEstrecho(val cardName: String) extends IEffect {
     vinculoEstrechoEffect(zone, card)
   }
 
+  /** Metodo que define la accion que tendra el efecto sobre una carta de asedio
+   *
+   * @param section seccion del jugador que aplica el efecto
+   * @param card    carta a la cual se le aplicara el efecto
+   * @param board   tablero donde se aplica el efecto
+   */
   override def applyEffectSiege(section: Int, card: ICard, board: Board): Unit = {
     var zone: Zone = Zone()
     if (section == 1) {zone = board.siegeZonePlayerOne}
@@ -55,6 +82,12 @@ class VinculoEstrecho(val cardName: String) extends IEffect {
     vinculoEstrechoEffect(zone, card)
   }
 
+  /** Metodo que define la accion que tendra el efecto sobre una carta de clima
+   *
+   * @param section seccion del jugador que aplica el efecto
+   * @param card    carta a la cual se le aplicara el efecto
+   * @param board   tablero donde se aplica el efecto
+   */
   override def applyEffectWeather(section: Int, card: ICard, board: Board): Unit = {}
 
   private def canEqual(other: Any): Boolean = other.isInstanceOf[VinculoEstrecho]

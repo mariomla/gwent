@@ -8,14 +8,21 @@ package gwent.states
 
 class PlayerOneInfiniteTurn extends State{
 
+  /** Metodo que realiza la transicion de estado correspondiente cuando el jugador uno pasa de turno.
+   */
   override def playerOnePass(): Unit = {
     this.changeState(new PlayerOneTurn)
     gameController.endRound()
   }
 
+  /** Metodo que realiza la transicion de estado correspondiente cuando el jugador uno juega una carta
+   */
   override def playerOnePlayCard(): Unit = {}
-  
 
+  /** Metodo que determina si es el turno "infinito "del jugador uno
+   *
+   * @return Devuelve true si es el turno "infinito" del jugador 1 y false en el caso contrario.
+   */
   override def isPlayerOneInfiniteTurn: Boolean = true
 
   override def equals(other: Any): Boolean = other match {

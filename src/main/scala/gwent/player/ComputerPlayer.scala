@@ -14,6 +14,8 @@ import gwent.effect.IEffect
  * @param gemstones Las gemas que tiene
  *
  * @constructor Crea un jugador computador con un name, section, cardDeck, cardHand y gemstones especificadas
+ * @constructor Crea un jugador computador con un nombre y un cardDeck especificados. Establece por defecto
+ *              la section como 2, la mano de cartas como vacia y en numero de gemas a 2.
  *              
  * Extiende de AbtractPlayer             
  */
@@ -21,7 +23,12 @@ import gwent.effect.IEffect
 class ComputerPlayer(private val name: String, private val section: Int, private var cardDeck: List[ICard],
                      private var cardHand: List[ICard], private var gemstones: Int) extends
                       AbstractPlayer(name, section, cardDeck, cardHand, gemstones) {
-  
+
+  /** Metodo para jugar la carta card en el tablero board
+   * 
+   * @param card carta que se jugara
+   * @param board tablero en el que se jugara la carta
+   */
   def playCard(card: ICard, board: Board): Unit = {
     if (this.getCardHand.contains(card)) {
       card.playCardComputerPlayer(board)
@@ -32,8 +39,9 @@ class ComputerPlayer(private val name: String, private val section: Int, private
       println("El jugador DOS no posee la carta "+ card.toString + " en la mano.")
     }
   }
-  
-  
+
+  /** Metodo que notifica al Observador del jugador cuando este pierde.
+   */
   def lose(): Unit = {
     notifyObserver(this)
   }
