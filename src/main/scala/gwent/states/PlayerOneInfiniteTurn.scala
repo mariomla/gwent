@@ -1,5 +1,11 @@
 package gwent.states
 
+/** Clase que representa al estado de la partida en el cual es el turno "infinito" del jugador 1. En este turno el 
+ * jugador 1 puede jugar las cartas que quiera hasta que decida pasar.
+ *
+ * Extiende de State
+ */
+
 class PlayerOneInfiniteTurn extends State{
 
   override def playerOnePass(): Unit = {

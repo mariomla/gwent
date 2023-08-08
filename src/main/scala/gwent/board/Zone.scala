@@ -4,6 +4,16 @@ import gwent.board.Component
 import gwent.cards.ICard
 import gwent.effect.IEffect
 
+/** Clase para definir una zona del tablero
+ *
+ * Una zona esta definida por las cartas que estan en ella.
+ *
+ * @param cards Arreglo de las cartas jugadas en dicha zona
+ *
+ * @constructor Crea una Zona con las cartas especificadas.
+ * @constructor Crea una zona vacia, sin cartas jugadas.             
+ */
+
 class Zone(private[gwent] var cards: Array[ICard]) extends Component {
 
   def this() = this(new Array[ICard](0)) // 

@@ -4,7 +4,22 @@ import gwent.cards.ICard
 import gwent.effect.IEffect
 import jdk.internal.jmod.JmodFile.Section
 
-// Solo puede haber un Board
+/** Clase que representa el tablero del juego
+ *
+ * Un tablero esta definido por sus zonas las cuales son: zona de combate cuerpo a cuerpo para jugador 1 y 2,
+ * zona de combate a distancia para jugador 1 y 2, zona de asedio para jugador 1 y 2 y zona de clima.
+ *
+ * @param meleeZonePlayerOne Zona de combate cuerpo a cuerpo para el jugador 1
+ * @param meleeZonePlayerTwo Zona de combate cuerpo a cuerpo para el jugador 2
+ * @param rangedZonePlayerOne Zona de combate a distancia para el jugador 1
+ * @param rangedZonePlayerTwo Zona de combate a distancia para el jugador 2
+ * @param siegeZonePlayerOne Zona de asedio para el jugador 1
+ * @param siegeZonePlayerTwo Zona de asedio para el jugador 2
+ * @param weatherZone Zona de clima
+ *
+ * @constructor Crea un tablero con cada una de sus zonas especificadas
+ * @constructor Segundo Constructor, crea un tablero con todas sus zonas vacias
+ */
 
 class Board(private[gwent] var meleeZonePlayerOne: Zone, private[gwent] var rangedZonePlayerOne: Zone,
             private[gwent] var siegeZonePlayerOne: Zone, private[gwent] var meleeZonePlayerTwo: Zone,
@@ -29,56 +44,4 @@ class Board(private[gwent] var meleeZonePlayerOne: Zone, private[gwent] var rang
   def setWeatherZone(card: ICard): Unit = {
     this.weatherZone.cards = Array(card)
   }
-  
-  //def applyEffect(effect: IEffect): Unit = {}
-
-  //removeWeatherCard
-  
-  /*
-  def setStrengthZone(zone: List[ICard], strength: Int): Unit = {
-    zone.head match {
-      case z: UnitCard => {
-                           val restoZone: List[ICard] = zone.tail
-                           zone.head.asInstanceOf[UnitCard].setStrength(strength)
-                           this.setStrengthZone(restoZone, strength)}
-
-      case _ =>
-    }
-  
-  }
-
-
-  def refuerzoMoral(): Unit = {
-  }
-
-  def vinculoEstrecho() : Unit = {}
-
-  def escarchaMordiente(section: Int): Unit = {
-    section match {
-      case 1 => setStrengthZone(meleeZonePlayerOne, 1)
-      case 2 => setStrengthZone(meleeZonePlayerTwo, 1)
-      case _ => println("Seccion no valida")
-    }
-  }
-
-  def nieblaImpenetrable(section: Int): Unit = {
-    section match {
-      case 1 => setStrengthZone(rangedZonePlayerOne, 1)
-      case 2 => setStrengthZone(rangedZonePlayerTwo, 1)
-      case _ => println("Seccion no valida")
-    }
-  }
-
-  def lluviaTorrencial(section: Int): Unit = {
-    section match {
-      case 1 => setStrengthZone(siegeZonePlayerOne, 1)
-      case 2 => setStrengthZone(siegeZonePlayerTwo, 1)
-      case _ => println("Seccion no valida")
-    }
-  }
-
-  def climaDespejado(): Unit = {setWeatherZone(null)}
-  */
-
-  //setters?
 }

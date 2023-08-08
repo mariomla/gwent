@@ -6,6 +6,12 @@ import gwent.observer.{Observer, ISubject}
 import gwent.player.{ComputerPlayer, HumanPlayer}
 import gwent.states.{GameEnded, PlayerOneInfiniteTurn, PlayerOneTurn, PlayerTwoInfiniteTurn, PlayerTwoTurn}
 
+/** Clase del controlador del juego. Posee las variables state, que representa el estado de la partida; board, que
+ * representa el tablero donde se juega; player1, que representa al jugador 1 el cual es humano y player2, que
+ * representa al jugador 2 el cual es una computadora.
+ * 
+ * Extiende de Observer, pues estara observando a los player.
+ */
 
 class GameController extends Observer{
   private var state: State = new PlayerOneTurn()
@@ -119,7 +125,7 @@ class GameController extends Observer{
 
   def playerLose(): Unit = {
     state.playerLose()
-  } // OJo, quizas tenga q ponerse en turno sin infinito
+  }
 
   override def update(observed: ISubject): Unit = {
     println("Player " + observed.toString + " loses. End of the game.")

@@ -1,5 +1,10 @@
 package gwent.states
 
+/** Clase que representa al estado de la partida en el cual es el turno del jugador 1.
+ *
+ * Extiende de State
+ */
+
 class PlayerOneTurn extends State {
   override def playerOnePlayCard(): Unit = this.changeState(new PlayerTwoTurn)
 

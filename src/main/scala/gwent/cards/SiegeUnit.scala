@@ -5,6 +5,20 @@ import gwent.board.{Board, Zone}
 import gwent.effect.IEffect
 import gwent.effect.NoEffect
 
+/** Clase que represente una carta de unidad de asedio
+ *
+ * Esta definida por su nombre (name), por su efecto (effect) y por su fuerza (strenght)
+ *
+ * @param name El nombre de la carta
+ * @param effect El efecto de la carta
+ * @param strength La fuerza de la carta
+ *
+ * @constructor Crea una carta con el nombre, el efecto y la fuerza especificada
+ * @constructor Segundo constructor, crea una carta con un nombre y fuerza especificada y atribuye el efecto NoEffect
+ *
+ * Extiende de UnitCard
+ */
+
 class SiegeUnit(private val name: String, private val effect: IEffect, private val strength: Int)
                 extends UnitCard(name, effect, strength) {
 

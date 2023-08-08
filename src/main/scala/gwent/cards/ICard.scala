@@ -3,6 +3,8 @@ package gwent.cards
 import gwent.board.Board
 import gwent.effect.IEffect
 
+/** Trait para definir a las cartas y establecer sus metodos
+ */
 trait ICard {
   def getName: String
 

@@ -1,5 +1,8 @@
 package gwent.states
 
+/** Clase que se usara para representar los estados de una partida, es la clase padre de los posibles estados.
+ */
+
 class State {
   protected var gameController: GameController = null
 

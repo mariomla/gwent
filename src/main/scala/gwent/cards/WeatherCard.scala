@@ -4,9 +4,21 @@ import gwent.cards.AbstractCard
 import gwent.board.Board
 import gwent.effect.{CieloDespejado, IEffect}
 
+/** Clase que represente una carta de clima
+ *
+ * Esta definida por su nombre (name) y por su efecto (effect)
+ *
+ * @param name El nombre de la carta
+ * @param effect El efecto de la carta
+ *
+ * @constructor Crea una carta con el nombre, el efecto y la fuerza especificada
+ *
+ * Extiende de AbstractCard
+ */
+
 class WeatherCard(private val name: String, private val effect: IEffect) extends AbstractCard(name, effect) {
 
-  //playcard OJO, ARREGLAR??
+
   override def setStrength(newStrength: Int): Unit = {println("WeatherCard no tiene atributo Strngth")}
 
   override def getStrength: Int = {

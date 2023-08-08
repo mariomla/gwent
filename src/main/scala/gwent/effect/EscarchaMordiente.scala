@@ -2,6 +2,11 @@ package gwent.effect
 import gwent.board.{Board, Zone}
 import gwent.cards.ICard
 
+/** Clase que representa al efecto de Escarcha Mordiente
+ *
+ * Extiende de IEffect
+ */
+
 class EscarchaMordiente extends IEffect {
 
   override def applyEffectMelee(section: Int, card: ICard, board: Board): Unit = {

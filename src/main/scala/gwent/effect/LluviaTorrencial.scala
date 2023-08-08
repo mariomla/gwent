@@ -2,6 +2,11 @@ package gwent.effect
 import gwent.board.{Zone, Board}
 import gwent.cards.ICard
 
+/** Clase que representa al efecto de Lluvia Torrencial
+ *
+ * Extiende de IEffect
+ */
+
 class LluviaTorrencial extends IEffect {
 
   override def applyEffectMelee(section: Int, card: ICard, board: Board): Unit = {}

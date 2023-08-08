@@ -3,6 +3,17 @@ import gwent.board.{Board, Zone}
 import gwent.cards.ICard
 import gwent.player.AbstractPlayer
 
+/** Clase que representa al efecto de Vinculo Estrecho
+ *
+ * Esta definida por el nombre de la carta que tiene este efecto.
+ *
+ * @param cardName Nombre de la carta que posee este efecto
+ *
+ * @constructor Crea un efecto de Vinculo Estrecho con el cardName especificado.
+ *
+ * Extiende de IEffect
+ */
+
 class VinculoEstrecho(val cardName: String) extends IEffect {
 
   def timesThisCardInZone(zone: Zone): Int = {

@@ -2,11 +2,25 @@ package gwent.player
 import gwent.board.Board
 import gwent.cards.ICard
 
+/** Clase que representa un jugador humano
+ *
+ * Un jugador humano esta definido por su name, su section, su cardDeck, su cardHand y sus gemstones
+ *
+ * @param name El nombre del jugador
+ * @param section La seccion del tablero en la que jugara, para un jugador humano sera section = 1
+ * @param cardDeck El mazo de cartas que posee
+ * @param cardHand La mano de cartas que tiene
+ * @param gemstones Las gemas que tiene
+ *
+ * @constructor Crea un jugador humano con un name, section, cardDeck, cardHand y gemstones especificadas
+ *              
+ * Extiende de AbtractPlayer             
+ */
+
 class HumanPlayer(private val name: String, private val section: Int, private var cardDeck: List[ICard],
                   private var cardHand: List[ICard], private var gemstones: Int) extends
                   AbstractPlayer(name, section, cardDeck, cardHand, gemstones){
 
-  // Aqui ira metodo "jugar", que sera distinto entre HumanPLayer y ComputerPlayer
   def playCard(card: ICard, board: Board): Unit = {
     if (this.getCardHand.contains(card)) {
       card.playCardHumanPlayer(board)

@@ -3,6 +3,21 @@ package gwent.effect
 import gwent.board.{Zone, Board}
 import gwent.cards.ICard
 
+/** Clase que representa al efecto de Refuerzo Moral
+ *
+ * Esta definida por el nombre de la carta que tiene este efecto y por las veces que se aplicado este efecto sobre
+ * una zona
+ * 
+ * @param cardName Nombre de la carta que posee este efecto
+ * @param cardsEffectApplied Numero de veces que se ha aplicado este efecto sobre una zona. Inicialmente solo es 0.
+ *                           Es usado para la aplicacion del efecto.
+ *                           
+ * @constructor Crea un efecto de Refuerzo Moral con el cardName especificado, cardEffectApplied parte siempre en 0
+ *              por defecto.
+ * 
+ * Extiende de IEffect
+ */
+
 class RefuerzoMoral(cardName: String, var cardsEffectApplied: Int) extends IEffect {
   // Se supondra que no existen dos cartas de distinto tipo con el mismo nombre
   def this(cardName: String) = this(cardName, 0)

@@ -2,6 +2,11 @@ package gwent.effect
 import gwent.cards.ICard
 import gwent.board.{Board, Zone}
 
+/** Clase que representa al efecto vacio, es decir, un efecto que no hace nada.
+ *
+ * Extiende de IEffect
+ */
+
 class NoEffect extends IEffect {
 
   override def applyEffectMelee(section: Int, card: ICard, board: Board): Unit = {}

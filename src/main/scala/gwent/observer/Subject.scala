@@ -3,6 +3,11 @@ package gwent.observer
 import gwent.observer.{Observer, ISubject}
 import scala.collection.mutable.ListBuffer
 
+/** Clase abstracta usada para el patron observer. Represnta el objeto observado.
+ * 
+ * Extiende de ISubject
+ */
+
 abstract class Subject extends ISubject {
   private val observers: ListBuffer[Observer] = ListBuffer()
 

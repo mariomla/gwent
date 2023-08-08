@@ -8,6 +8,19 @@ import gwent.effect.IEffect
 
 import scala.::
 
+/** Clase abstracta que representa un jugador
+ *
+ * Un jugador esta definido por su name, su section, su cardDeck, su cardHand y sus gemstones
+ *
+ * @param name El nombre del jugador
+ * @param section La seccion del tablero en la que jugara
+ * @param cardDeck El mazo de cartas que posee
+ * @param cardHand La mano de cartas que tiene
+ * @param gemstones Las gemas que tiene
+ *                  
+ * Extiende de Subject, pues sera observado por el GameController.                 
+ */
+
 abstract class AbstractPlayer(private val name: String, private val section: Int, private var cardDeck: List[ICard],
                               private var cardHand: List[ICard], private var gemstones: Int) extends Subject {
 
