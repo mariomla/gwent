@@ -1,7 +1,7 @@
 package gwent.player
 
 
-//import gwent.observer.Subject
+import gwent.observer.Subject
 import gwent.board.Board
 import gwent.cards.ICard
 import gwent.effect.IEffect
@@ -9,7 +9,7 @@ import gwent.effect.IEffect
 import scala.::
 
 abstract class AbstractPlayer(private val name: String, private val section: Int, private var cardDeck: List[ICard],
-                              private var cardHand: List[ICard], private var gemstones: Int) /*extends Subject*/ {
+                              private var cardHand: List[ICard], private var gemstones: Int) extends Subject {
 
   def getName: String = this.name
 
@@ -29,8 +29,12 @@ abstract class AbstractPlayer(private val name: String, private val section: Int
     cardHand = cardHand :+ firstCard
     cardDeck = deckWOfirstCard
   }
-  
-  def lose(): Unit //
+
+  def removeCardFromCardHand(aCard: ICard): Unit = {
+    val index = cardHand.indexOf(aCard)
+    this.cardHand = cardHand.patch(index, Nil, 1)
+  }
+  def lose(): Unit
   
   def decrementGemstones(): Unit = {
     if (gemstones <= 1) {

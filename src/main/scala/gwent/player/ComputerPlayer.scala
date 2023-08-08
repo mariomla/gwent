@@ -4,16 +4,15 @@ import gwent.cards.ICard
 import gwent.effect.IEffect
 
 class ComputerPlayer(private val name: String, private val section: Int, private var cardDeck: List[ICard],
-                    private var cardHand: List[ICard], private var gemstones: Int) extends
+                     private var cardHand: List[ICard], private var gemstones: Int) extends
                       AbstractPlayer(name, section, cardDeck, cardHand, gemstones) {
 
   // Aqui ira metodo "jugar", que sera distinto entre HumanPLayer y ComputerPlayer
   def playCard(card: ICard, board: Board): Unit = {
     if (this.getCardHand.contains(card)) {
-      val index = cardHand.indexOf(card)
-      cardHand = cardHand.patch(index, Nil, 1) // Elimina la carta del índice obtenido
       card.playCardComputerPlayer(board)
       this.applyEffectToBoard(board, 2, card.getEffect)
+      this.removeCardFromCardHand(card)
     }
     else {
       println("El jugador DOS no posee la carta "+ card.toString + " en la mano.")
@@ -22,7 +21,7 @@ class ComputerPlayer(private val name: String, private val section: Int, private
   
   
   def lose(): Unit = {
-    //notifyObserver(this)
+    notifyObserver(this)
   }
 
   def this(name: String, cardDeck: List[ICard]) = this(name, 2, cardDeck, Nil, 2)

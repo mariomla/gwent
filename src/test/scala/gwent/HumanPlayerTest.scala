@@ -4,6 +4,7 @@ import gwent.cards.{ICard, MeleeUnit, RangedUnit, SiegeUnit, WeatherCard}
 import gwent.effect.{EscarchaMordiente, NieblaImpenetrable}
 import munit.FunSuite
 import gwent.player.HumanPlayer
+import gwent.board.Board
 
 class HumanPlayerTest extends FunSuite {
   var name1: String = null
@@ -21,6 +22,7 @@ class HumanPlayerTest extends FunSuite {
   var player2: HumanPlayer = null
   var player3: HumanPlayer = null
   var player4: HumanPlayer = null
+  var board: Board = null
 
   override def beforeEach(context: BeforeEach): Unit = {
     name1 = "Genghis Khan"
@@ -33,6 +35,7 @@ class HumanPlayerTest extends FunSuite {
     cardDeck1 = List(card1, card1, card1, card3)
     cardDeck2 = List(card1, card3, card2, card4)
     cardHand = List(card3, card1, card4)
+    board = Board()
 
     player1 = HumanPlayer(name1, cardDeck1)
     player2 = HumanPlayer(name2, 2, cardDeck2, cardHand, 3)
@@ -90,4 +93,13 @@ class HumanPlayerTest extends FunSuite {
     assert(cardDeck2.contains(player2.getCardDeck.tail.tail.head))
     assert(cardDeck2.contains(player2.getCardDeck.tail.tail.tail.head))
     }
+
+  test("Al hacer plawCard el numero de cartas en la mano debe disminuir"){
+    player1.drawCard()
+    player1.drawCard()
+    assertEquals(player1.getCardHand.length, 2)
+    player1.playCard(player1.getCardHand.head, board)
+    assertEquals(player1.getCardHand.length, 1)
+
+  }
 }
