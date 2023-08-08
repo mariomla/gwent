@@ -23,10 +23,12 @@ class GameController extends Observer{
 
   def createHumanPlayer(name: String, cardDeck: List[ICard]): Unit = {
     player1 = HumanPlayer(name, cardDeck)
+    player1.registerObserver(this)
   }
 
   def createComputerPlayer(name: String, cardDeck: List[ICard]): Unit = {
     player2 = ComputerPlayer(name, cardDeck)
+    player2.registerObserver(this)
   }
 
   def startGame(cardsToDraw: Int = 10): Unit = {
@@ -113,7 +115,11 @@ class GameController extends Observer{
 
   def isPlayerTwoInfiniteTurn: Boolean = state.isPlayerTwoInfiniteTurn
 
-  def playerLose(): Unit = {state.playerLose()} // OJo, quizas tenga q ponerse en turno sin infinito
+  def isTheGameEnded: Boolean = state.isTheGameEnded
+
+  def playerLose(): Unit = {
+    state.playerLose()
+  } // OJo, quizas tenga q ponerse en turno sin infinito
 
   override def update(observed: ISubject): Unit = {
     println("Player " + observed.toString + " loses. End of the game.")

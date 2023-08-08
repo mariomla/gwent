@@ -3,8 +3,8 @@ import munit.FunSuite
 import gwent.cards.ICard
 import gwent.player.{ComputerPlayer, HumanPlayer}
 import gwent.board.Board
-import gwent.effect.{CieloDespejado, EscarchaMordiente, IEffect, NoEffect, RefuerzoMoral, VinculoEstrecho}
-import gwent.cards.{MeleeUnit, WeatherCard}
+import gwent.effect.{CieloDespejado, EscarchaMordiente, IEffect, LluviaTorrencial, NieblaImpenetrable, NoEffect, RefuerzoMoral, VinculoEstrecho}
+import gwent.cards.{MeleeUnit, WeatherCard, RangedUnit, SiegeUnit}
 
 class EffectsTest extends FunSuite {
  var name1: String = null
@@ -20,6 +20,12 @@ class EffectsTest extends FunSuite {
  var card8: ICard = null
  var card9: ICard = null
  var card10: ICard = null
+ var card11: ICard = null
+ var card12: ICard = null
+ var card13: ICard = null
+ var card14: ICard = null
+ var card15: ICard = null
+ var card16: ICard = null
 
  var cardDeck1: List[ICard] = null
  var cardDeck2: List[ICard] = null
@@ -42,16 +48,22 @@ class EffectsTest extends FunSuite {
   card8 = new MeleeUnit("Campeon", new VinculoEstrecho("Campeon"), 3)
   card9 = new MeleeUnit("Campeon", new VinculoEstrecho("Campeon"), 3)
   card10 = new MeleeUnit("Campeon", new VinculoEstrecho("Campeon"), 3)
+  card11 = new RangedUnit("Arquero", 3)
+  card12 = new RangedUnit("Ballestero", 5)
+  card13 = new SiegeUnit("Catapulta", 7)
+  card14 = new SiegeUnit("LanzaPiedras", 9)
+  card15 = new WeatherCard("Lluvia Torrencial", new LluviaTorrencial)
+  card16 = new WeatherCard("Niebla Impenetrable", new NieblaImpenetrable)
 
-  cardDeck1 = List(card1, card2, card3, card4, card7, card8, card9, card10)
-  cardDeck2 = List(card1, card4, card4, card5, card6)
+  cardDeck1 = List(card1, card2, card3, card4, card7, card8, card9, card10, card11, card13)
+  cardDeck2 = List(card4, card5, card6, card1, card12, card2, card14, card15, card16, card8)
 
   player1 = HumanPlayer(name1, cardDeck1)
   player2 = ComputerPlayer(name2, cardDeck2)
 
   board = Board()
 
-  for (x <- 0 until 5) {
+  for (x <- 0 until 10) {
    player1.drawCard()
    player2.drawCard()
   }
@@ -68,12 +80,14 @@ class EffectsTest extends FunSuite {
   assertEquals(card3.getStrength, 3)
  }
 
- test("Escarcha Mordiente") { // mas test
+ test("Escarcha Mordiente") {
   player1.playCard(card1, board)
   player1.playCard(card4, board)
+  player2.playCard(card5, board)
   player2.playCard(card6, board)
   assertEquals(card1.getStrength, 1)
   assertEquals(card4.getStrength, 1)
+  assertEquals(card5.getStrength, 1)
  }
 
  test("Vinculo Estrecho") {
@@ -90,6 +104,28 @@ class EffectsTest extends FunSuite {
   assertEquals(card9.getStrength, 12)
  }
 
+ test("LLuvia Torrencial"){
+  player2.playCard(card14, board)
+  player1.playCard(card13, board)
+  player2.playCard(card15, board)
+  assertEquals(card13.getStrength, 1)
+  assertEquals(card14.getStrength, 1)
+ }
 
+ test("Niebla Impenetrable") {
+  player1.playCard(card11, board)
+  player2.playCard(card12, board)
+  player2.playCard(card16, board)
+  assertEquals(card11.getStrength, 1)
+  assertEquals(card12.getStrength, 1)
+ }
 
+ test("Cielo Despejado") {
+  player2.playCard(card15, board)
+  println(board.getWeatherZone.cards(0))
+  assert(board.getWeatherZone.cards(0).getEffect.equals(new LluviaTorrencial))
+  player1.playCard(card7, board)
+  println(board.getWeatherZone.cards)
+  assertEquals(board.getWeatherZone.cards.length, 0)
+ }
 }

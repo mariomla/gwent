@@ -5,6 +5,8 @@ class PlayerOneTurn extends State {
 
   override def playerOnePass(): Unit = this.changeState(new PlayerTwoInfiniteTurn)
 
+  override def playerLose(): Unit = {this.changeState(new GameEnded)}
+
   override def isPlayerOneTurn: Boolean = true
 
   override def equals(other: Any): Boolean = other match {

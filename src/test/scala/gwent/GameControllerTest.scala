@@ -84,4 +84,36 @@ class GameControllerTest extends FunSuite{
     gc.playerTwoPlayCard(gc.getPlayer2.getCardHand.head)
   }
 
+  test("Cambio de Ronda") {
+    gc.createHumanPlayer(name1, cardDeck1)
+    gc.createComputerPlayer(name2, cardDeck2)
+    gc.startGame(4)
+    assert(gc.getPlayer1.getGemstones == 2 && gc.getPlayer2.getGemstones == 2)
+    gc.playerOnePlayCard(gc.getPlayer1.getCardHand.head)
+    gc.playerTwoPlayCard(gc.getPlayer2.getCardHand.head)
+    gc.playerOnePlayCard(gc.getPlayer1.getCardHand.head)
+    gc.playerTwoPass()
+    gc.playerOnePlayCard(gc.getPlayer1.getCardHand.head)
+    gc.playerOnePlayCard(gc.getPlayer1.getCardHand.head)
+    gc.playerOnePass()
+    assert(gc.isPlayerOneTurn)
+    assert(gc.getPlayer1.getGemstones == 1 || gc.getPlayer2.getGemstones == 1)
+  }
+
+  test("Final de la partida") {
+    gc.createHumanPlayer(name1, cardDeck1)
+    gc.createComputerPlayer(name2, cardDeck2)
+    gc.startGame(2)
+    gc.playerOnePlayCard(gc.getPlayer1.getCardHand.head)
+    gc.playerTwoPass()
+    gc.playerOnePlayCard(gc.getPlayer1.getCardHand.head)
+    gc.playerOnePass()
+    gc.playerOnePlayCard(gc.getPlayer1.getCardHand.head)
+    gc.playerTwoPass()
+    gc.playerOnePlayCard(gc.getPlayer1.getCardHand.head)
+    gc.playerOnePass()
+    assert(gc.isTheGameEnded)
+  }
+
+
 }

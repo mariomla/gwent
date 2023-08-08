@@ -37,6 +37,7 @@ abstract class AbstractPlayer(private val name: String, private val section: Int
   def lose(): Unit
   
   def decrementGemstones(): Unit = {
+    println("El jugador " + this.getName + " pierde la ronda. Pierde una gemstone")
     if (gemstones <= 1) {
       gemstones = 0
       this.lose()
@@ -54,7 +55,7 @@ abstract class AbstractPlayer(private val name: String, private val section: Int
     board.rangedZonePlayerOne.applyEffect(board: Board, section: Int, effect: IEffect)
     board.rangedZonePlayerTwo.applyEffect(board: Board, section: Int, effect: IEffect)
     board.siegeZonePlayerOne.applyEffect(board: Board, section: Int, effect: IEffect)
-    board.meleeZonePlayerTwo.applyEffect(board: Board, section: Int, effect: IEffect)
+    board.siegeZonePlayerTwo.applyEffect(board: Board, section: Int, effect: IEffect)
     board.weatherZone.applyEffect(board: Board, section: Int, effect: IEffect)
   }
 }

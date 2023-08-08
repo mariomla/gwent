@@ -2,7 +2,7 @@ package gwent.cards
 
 import gwent.cards.AbstractCard
 import gwent.board.Board
-import gwent.effect.IEffect
+import gwent.effect.{CieloDespejado, IEffect}
 
 class WeatherCard(private val name: String, private val effect: IEffect) extends AbstractCard(name, effect) {
 
@@ -16,7 +16,7 @@ class WeatherCard(private val name: String, private val effect: IEffect) extends
 
 
   override def playCardHumanPlayer(board: Board): Unit = {
-    if (board.getWeatherZone.cards.length == 0) {
+    if (board.getWeatherZone.cards.length == 0 || this.effect.equals(new CieloDespejado)) {
       board.setWeatherZone(this)
     }
     else {

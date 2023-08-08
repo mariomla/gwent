@@ -33,5 +33,7 @@ class State {
   def isPlayerOneInfiniteTurn: Boolean = false
 
   def isPlayerTwoInfiniteTurn: Boolean = false
+  
+  def isTheGameEnded: Boolean = false
 }
 
